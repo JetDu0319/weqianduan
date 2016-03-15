@@ -8,17 +8,67 @@
 		* {margin: 0; padding: 0;}
 		body {font: 14px/22px "微软雅黑", arial, serif;}
 
-		.navBar {margin-top: 80px; width: 100%; height: 38px; background: #333;}
+		.navBar {
+			margin-top: 80px; 
+			width: 100%; 
+			height: 68px; 
+			background: #fff;
+			box-shadow: 1px 1px 4px 2px #e5e5e5;
+		}
 
 		.nav {margin: 0 auto; border: 0px solid #ccc;}
 		.nav ul {list-style: none; width: auto;}
-		.nav ul li {height: 38px; text-align: center;}
-		.nav ul li a {display: block; font-size: 16px; color: #fff; text-decoration: none; line-height: 39px;}
+		.nav ul li {height: 68px; text-align: center;}
+		.nav ul li a {
+			display: block; 
+			font-size: 16px; 
+			color: #000; 
+			text-decoration: none; 
+			line-height: 69px;
+		}
+		.current a{
+			color: #fff !important;
+		}
+		.link-effect a {
+			padding: 0 0 10px;
+		}
 
-		.ie6-8 .nav {width: 1000px; height: 38px;}
+		.link-effect li{
+			position: relative;
+		}
+
+		.link-effect a::after {
+			position: absolute;
+			top: 93%;
+			left: 0;
+			width: 100%;
+			height: 1px;
+			background:#f60;
+			content: '';
+			opacity: 0;
+			-webkit-transition: height 0.3s, opacity 0.3s, -webkit-transform 0.3s;
+			-moz-transition: height 0.3s, opacity 0.3s, -moz-transform 0.3s;
+			transition: height 0.3s, opacity 0.3s, transform 0.3s;
+			-webkit-transform: translateY(-10px);
+			-moz-transform: translateY(-10px);
+			transform: translateY(-10px);
+		}
+
+		.link-effect a:hover::after,
+		.link-effect a:focus::after {
+			height: 5px;
+			opacity: 1;
+			-webkit-transform: translateY(0px);
+			-moz-transform: translateY(0px);
+			transform: translateY(0px);
+		}
+		.ie6-8 .nav {width: 1000px; height: 68px;}
 		.ie6-8 .nav ul li {float: left;}
 		.ie6-8 .nav ul li a {padding: 0 30px 0 30px;}
-		.ie6-8 .nav ul li.current {background: #f60;}
+		.ie6-8 .nav ul li.current {
+			background: #f60;
+			color: #fff;
+		}
 		.ie6-8 .nav ul li:hover a {color: #f60;}
 		.ie6-8 .nav ul li a:hover {_color: #f60;}/*IE6 Hack*/
 		.ie6-8 .nav ul li.current:hover a {color: #fff;}
@@ -30,10 +80,20 @@
 		.ie6-8 .nav .title {display: none;}
 
 	@media screen and (min-width: 1000px) {
-		.nav {width: 1000px; height: 38px;}
+		.nav {width: 1000px; height: 68px;}
 		
 		.nav ul li {float: left; width: auto;}
-		.nav ul li a {padding: 0 30px 0 30px;}
+		.nav ul li a {
+			padding: 0 30px 0 30px;
+			-webkit-transition: all 0.3s;
+			-moz-transition: all 0.3s;
+			transition: all 0.3s;
+		}
+		.nav ul li a{
+			-webkit-transition: all 0.3s;
+			-moz-transition: all 0.3s;
+			transition: all 0.3s;
+		}
 		.nav ul li.current {background: #f60;}
 		.nav ul li:hover a {color: #f60;}
 		.nav ul li.current:hover a {color: #fff;}
@@ -69,9 +129,9 @@
 
 		.nav .hot {display:none;}
 
-		.nav .title {position: relative; width: 100%; height: 38px; border-top: 1px solid #444; background: #333; text-align: center; font:normal 20px/35px "Microsoft YaHei", arial, serif; letter-spacing: 2px;}
+		.nav .title {position: relative; width: 100%; height: 38px; border-top: 1px solid #444; background: #333; text-align: center; font:normal 20px/35px "微软雅黑", arial, serif; letter-spacing: 2px;}
 		.nav .title a {color: #f60; text-decoration: none;}
-		.nav .title .btn {position: absolute; right: 10px; top: 0; width: 34px; height: 34px; padding: 2px; background: url(btn.png) center center no-repeat; cursor: pointer;}
+		.nav .title .btn {position: absolute; right: 10px; top: 0; width: 34px; height: 34px; padding: 2px; background: url(image/nav.png) center center no-repeat; cursor: pointer;}
 	}
 	</style>
 	<script type="text/javascript">
@@ -128,14 +188,14 @@
 <body>
 	<div class="navBar">
 		<div class="nav">
-			<ul id="menu">
-				<li class="current"><a href="#" target="_blank" title="首页">首页</a></li>
-				<li><a href="http://beyondweb.cn/" target="_blank" title="前端开发-BeyondWeb.cn">HTML5</a></li>
-				<li><a href="http://beyondweb.cn/" target="_blank" title="前端开发-BeyondWeb.cn">电视剧</a></li>
-				<li><a href="http://beyondweb.cn/" target="_blank" title="前端开发-BeyondWeb.cn">动漫</a></li>
-				<li><a href="http://beyondweb.cn/" target="_blank" title="前端开发-BeyondWeb.cn">综艺</a></li>
-				<li><a href="http://beyondweb.cn/" target="_blank" title="前端开发-BeyondWeb.cn">纪录片</a></li>
-				<li><a href="http://beyondweb.cn/" target="_blank" title="前端开发-BeyondWeb.cn">公开课</a></li>
+			<ul id="menu" class="link-effect">
+				<li class="current"><a href="#" title="首页">首页</a></li>
+				<li><a href="#" title="前端开发-BeyondWeb.cn">HTML5</a></li>
+				<li><a href="#" title="前端开发-BeyondWeb.cn">JavaScript</a></li>
+				<li><a href="#" title="前端开发-BeyondWeb.cn">AngularJS</a></li>
+				<li><a href="#" title="前端开发-BeyondWeb.cn">PHP</a></li>
+				<li><a href="#" title="前端开发-BeyondWeb.cn">数据库</a></li>
+				<li><a href="#" title="前端开发-BeyondWeb.cn">留言</a></li>
 			</ul>
 			<!-- <p class="hot">
 				<a href="http://beyondweb.cn/" target="_blank" title="前端开发-BeyondWeb.cn">钢铁侠3</a>
@@ -146,7 +206,7 @@
 			<!--判断浏览器是否是IE9,IE10或者是非IE浏览器-->
 			<!--[if (gt IE 8) | !(IE)]><!-->
 			<h1 class="title" id="title">
-				<a href="http://beyondweb.cn/" target="_blank" title="前端开发-BeyondWeb.cn">风驰网</a>
+				<a href="http://beyondweb.cn/" target="_blank" title="微前端-www.weqianduan.com">微前端</a>
 				<span class="btn" id="btn"></span>
 			</h1>
 			<!--<![endif]-->
