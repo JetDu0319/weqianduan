@@ -9,7 +9,7 @@ app.config(['$ocLazyLoadProvider', function($ocLazyLoadProvider) {
 		modules: [
 			{
 			    name: 'navCtrl',	//导航条
-			    files: ['js/controllers/navCtrl.js?time='+new Date().getTime()]
+			    files: ['js/directives/navDirec.js','js/controllers/navCtrl.js?time='+new Date().getTime()]
 		    }
 		],
 		// debug: true
@@ -22,7 +22,7 @@ app.controller('MainCtrl',['$scope','$ocLazyLoad',function($scope,$ocLazyLoad){
 }]);
 
 
-/*app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 	var lazyDeferred;
 	function resovleDep(param, tpl, module) {
 		var resolves = {
@@ -40,22 +40,22 @@ app.controller('MainCtrl',['$scope','$ocLazyLoad',function($scope,$ocLazyLoad){
 		return resolves;
 	};
 
-	$urlRouterProvider.otherwise('/summary');
+	$urlRouterProvider.otherwise('/index');
 	//路由配置
 	$stateProvider
-		.state('module1', {
-			url: '/module1',
+		.state('aboutme', {
+			url: '/aboutme',
 			templateProvider: function() {
 				return lazyDeferred.promise;
 			},
-			controller: 'module1Controller',
+			controller: 'mainCtrl',
 			resolve: resovleDep({
 				files: [
 					'controllers/module1Ctrl',
 					'services/module1Service',
 					'directives/module1Directive'
 				]
-			}, 'views/module1.html', 'app.module1')
+			}, 'pages/aboutme.html', 'app.module1')
 		})
 		.state('module2', {
 			abstract: true,
@@ -75,7 +75,7 @@ app.controller('MainCtrl',['$scope','$ocLazyLoad',function($scope,$ocLazyLoad){
 				]
 			}, 'views/list.html', 'app.module1')
 		})
-		.state('module1.detail', {
+		.state('module2.detail', {
 			url: ' /:id',
 			templateProvider: function() {
 				return lazyDeferred.promise;
@@ -86,4 +86,4 @@ app.controller('MainCtrl',['$scope','$ocLazyLoad',function($scope,$ocLazyLoad){
 			}, 'views / detail.html', 'app.module2')
 		});
 }]);
-*/
+
