@@ -1,0 +1,125 @@
+.navBar {
+		/*margin-top: 80px; */
+		width: 100%; 
+		height: 68px; 
+		background: #fff;
+		box-shadow: 1px 1px 4px 2px #e5e5e5;
+	}
+
+	.nav {margin: 0 auto; border: 0px solid #ccc;}
+	.nav ul {list-style: none; width: auto;}
+	.nav ul li {height: 68px; text-align: center;}
+	.nav ul li a {
+		display: block; 
+		font-size: 16px; 
+		color: #000; 
+		text-decoration: none; 
+		line-height: 69px;
+	}
+	.current a{
+		color: #fff !important;
+	}
+	.link-effect a {
+		padding: 0 0 10px;
+	}
+
+	.link-effect li{
+		position: relative;
+	}
+
+	.link-effect a::after {
+		position: absolute;
+		top: 93%;
+		left: 0;
+		width: 100%;
+		height: 1px;
+		background:#f60;
+		content: '';
+		opacity: 0;
+		-webkit-transition: height 0.3s, opacity 0.3s, -webkit-transform 0.3s;
+		-moz-transition: height 0.3s, opacity 0.3s, -moz-transform 0.3s;
+		transition: height 0.3s, opacity 0.3s, transform 0.3s;
+		-webkit-transform: translateY(-10px);
+		-moz-transform: translateY(-10px);
+		transform: translateY(-10px);
+	}
+
+	.link-effect a:hover::after,
+	.link-effect a:focus::after {
+		height: 5px;
+		opacity: 1;
+		-webkit-transform: translateY(0px);
+		-moz-transform: translateY(0px);
+		transform: translateY(0px);
+	}
+	.ie6-8 .nav {width: 1000px; height: 68px;}
+	.ie6-8 .nav ul li {float: left;}
+	.ie6-8 .nav ul li a {padding: 0 30px 0 30px;}
+	.ie6-8 .nav ul li.current {
+		background: #f60;
+		color: #fff;
+	}
+	.ie6-8 .nav ul li:hover a {color: #f60;}
+	.ie6-8 .nav ul li a:hover {_color: #f60;}/*IE6 Hack*/
+	.ie6-8 .nav ul li.current:hover a {color: #fff;}
+
+	.ie6-8 .nav .hot {float: left; margin-left: 20px; padding-top: 8px;}
+	.ie6-8 .nav .hot a {padding: 0 5px 0 5px; font-size: 12px; color: #fff; text-decoration: none;}
+	.ie6-8 .nav .hot a:hover {color: #f60; text-decoration: underline;}
+
+	.ie6-8 .nav .title {display: none;}
+
+@media screen and (min-width: 1000px) {
+	.nav {width: 1000px; height: 68px;}
+	
+	.nav ul li {float: left; width: auto;}
+	.nav ul li a {
+		padding: 0 30px 0 30px;
+		-webkit-transition: all 0.3s;
+		-moz-transition: all 0.3s;
+		transition: all 0.3s;
+	}
+	.nav ul li a{
+		-webkit-transition: all 0.3s;
+		-moz-transition: all 0.3s;
+		transition: all 0.3s;
+	}
+	.nav ul li.current {background: #f60;}
+	.nav ul li:hover a {color: #f60;}
+	.nav ul li.current:hover a {color: #fff;}
+
+	.nav .hot {margin-left: 20px; padding-top: 8px;}
+	.nav .hot a {padding: 0 5px 0 5px; font-size: 12px; color: #fff; text-decoration: none;}
+	.nav .hot a:hover {color: #f60; text-decoration: underline;}
+
+	.nav .title {display: none;}
+}
+
+@media screen and (min-width: 640px) and (max-width: 1000px) {
+	.nav {width: auto; height: 38px;}
+
+	.nav ul li {float: left; width: 14%; min-width: 50px;}
+
+	.nav ul li.current {background: #f60;}
+	.nav ul li:hover a {color: #f60;}
+	.nav ul li.current:hover a {color: #fff;}
+
+	.nav .hot {display:none;}
+	.nav .title {display: none;}
+}
+
+@media screen and (max-width: 640px) {
+	.navBar {margin-top: 0; height: auto; background: #444;}
+	.nav {width: auto; height: auto;}
+
+	.nav ul li {margin-top: 1px; width: 100%; min-width: 100px;background: #333;}
+	
+	.nav ul li a:active,
+	.nav ul li a:hover {background: #f60;}
+
+	.nav .hot {display:none;}
+
+	.nav .title {position: relative; width: 100%; height: 38px; border-top: 1px solid #444; background: #f60; text-align: center; font:normal 20px/35px "微软雅黑", arial, serif; letter-spacing: 2px;}
+	.nav .title a {color: #fff; text-decoration: none;}
+	.nav .title .btn {position: absolute; right: 10px; top: 0; width: 34px; height: 34px; padding: 2px; background: url(../../image/btn.png) center center no-repeat; cursor: pointer;}
+}

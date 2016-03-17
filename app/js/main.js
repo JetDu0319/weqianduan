@@ -9,7 +9,7 @@ requirejs.config({
         'angular': 'lib/angular/angular',
         'ocLazyLoad': 'lib/ocLazyLoad/ocLazyLoad.require',
         'uiRouter':'lib/ui-router/ui-router',
-        'app': 'js/app',
+        'app': 'js/app'
     },
     shim: {
         'bootstrap':['jquery'],
