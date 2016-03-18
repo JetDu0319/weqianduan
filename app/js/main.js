@@ -17,6 +17,9 @@ requirejs.config({
         'ocLazyLoad': ['angular'],
         'uiRouter':['angular'],
         'app': ['ocLazyLoad','bootstrap','uiRouter']
+    },
+    callback:function(){
+        console.log('requirejs done')
     }
 });
 

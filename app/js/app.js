@@ -1,89 +1,60 @@
-
-var app = angular.module('weApp',['oc.lazyLoad','ui.router']);
-/*oclazyload配置*/
-app.config(['$ocLazyLoadProvider', function($ocLazyLoadProvider) {
-	$ocLazyLoadProvider.config({
-		loadedModules: ['app'], //主模块名,和ng.bootstrap(document, [‘monitorApp‘])相同
-		jsLoader: requirejs, //使用requirejs去加载文件
-		// files: ['js/controllers/navCtrl'], //主模块需要的资源，这里主要子模块的声明文件
-		modules: [
-			{
-			    name: 'navCtrl',	//导航条
-			    files: ['js/directives/navDirec.js','js/controllers/navCtrl.js?time='+new Date().getTime()]
-		    }
-		],
-		// debug: true
+define(['uiRouter'],function(){
+    var app = angular.module("weApp", ['oc.lazyLoad','ui.router']);
+    app.config(function($controllerProvider,$compileProvider,$filterProvider,$provide){        
+	    app.register = {
+	        //得到$controllerProvider的引用
+	        controller : $controllerProvider.register,
+	        //同样的，这里也可以保存directive／filter／service的引用
+	        directive: $compileProvider.directive,
+	        filter: $compileProvider.register,
+	        service: $provide.service
+	    }; 
 	});
-}]);
-app.controller('MainCtrl',['$scope','$ocLazyLoad',function($scope,$ocLazyLoad){
-	$ocLazyLoad.load('navCtrl',{cache: false, timeout: 5000}).then(function () {
-		$scope.navContainer = 'pages/navbar.html';
-	});
-}]);
-
-
-app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-	var lazyDeferred;
-	function resovleDep(param, tpl, module) {
-		var resolves = {
-			loadMyCtrl: ['$ocLazyLoad', '$templateCache', '$q', function($ocLazyLoad, $templateCache, $q) {
-				lazyDeferred = $q.defer();
-				return $ocLazyLoad.load({
-					name: module,
-					cache: false,
-					files: param.files
-				}).then(function() {
-					lazyDeferred.resolve($templateCache.get(tpl));
-				});
-			}]
-		};
-		return resolves;
-	};
-
-	$urlRouterProvider.otherwise('/index');
-	//路由配置
-	$stateProvider
-		.state('aboutme', {
-			url: '/aboutme',
-			templateProvider: function() {
-				return lazyDeferred.promise;
-			},
-			controller: 'mainCtrl',
-			resolve: resovleDep({
-				files: [
-					'controllers/module1Ctrl',
-					'services/module1Service',
-					'directives/module1Directive'
-				]
-			}, 'pages/aboutme.html', 'app.module1')
-		})
-		.state('module2', {
-			abstract: true,
-			url: '/module2',
-			templateUrl: 'views/module2.html'
-		})
-		.state('module2.list', {
-			url: '',
-			templateProvider: function() {
-				return lazyDeferred.promise;
-			},
-			controller: 'module2Controller',
-			resolve: resovleDep({
-				files: [
-					'controllers/module2ListCtrl',
-					'services/module2Service'
-				]
-			}, 'views/list.html', 'app.module1')
-		})
-		.state('module2.detail', {
-			url: ' /:id',
-			templateProvider: function() {
-				return lazyDeferred.promise;
-			},
-			controller: 'detailController',
-			resolve: resovleDep({
-				files: ['controllers / detailCtrl', 'services / detailService']
-			}, 'views / detail.html', 'app.module2')
+    app.config(['$stateProvider','$urlRouterProvider',function($stateProvider, $urlRouterProvider){
+	    $urlRouterProvider.otherwise('home');
+	    $stateProvider
+	    .state("home",{
+	        url:"/home",
+	        controller: 'MainCtrl',
+	        templateUrl: 'pages/main.html',
+	        resolve: {
+	            loadCtrl: ["$q", function($q) { 
+	                var deferred = $q.defer();
+	                //异步加载controller／directive/filter/service
+	                require([
+	                    'js/directives/navDirec',
+	                    'js/controllers/mainCtrl'
+	                ], function() { deferred.resolve(); });
+	                return deferred.promise;
+	            }]
+	        }
+	    })
+	    .state("aboutme",{
+	        url:"/aboutme",
+	        controller: 'AboutCtrl',
+	        templateUrl: 'pages/aboutme.html',
+	        resolve: {
+	            loadCtrl: ["$q", function($q) { 
+	                var deferred = $q.defer();
+	                //异步加载controller／directive/filter/service
+	                require([
+	                    'js/controllers/aboutCtrl'
+	                ], function() { deferred.resolve(); });
+	                return deferred.promise;
+	            }]
+	        }
+	    })
+	}]);
+    app.controller('MainCtrl',['$scope','$ocLazyLoad',function($scope,$ocLazyLoad){
+    	/*加载header和footer*/
+		$ocLazyLoad.load('js/controllers/navCtrl',{cache: false, timeout: 5000}).then(function () {
+			$scope.navContainer = 'pages/navbar.html';
+			$scope.footerContainer = 'pages/footer.html';
 		});
-}]);
-
+	}]);
+　　return app;
+});
+/*调戏看客*/
+document.addEventListener('visibilitychange', function() {
+  document.title = document.hidden ? '出BUG了，快看！':'微前端';
+});

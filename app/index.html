@@ -6,16 +6,41 @@
 	<title>微前端</title>
 	<style type="text/css">
 		* {margin: 0; padding: 0;}
-		body {font: 14px/22px "微软雅黑", arial, serif;}
+		body {
+			font: 14px/22px "微软雅黑", arial, serif;
+		}
+		.main-container{
+			min-height: 400px;
+		    margin: 0 auto;
+	    	width: 100%;
+	    	max-width: 100%;
+			background-color: rgba(125, 125, 125, 0.09);
+		}
+	/* @media screen and (min-width: 640px) {
+		.main-container{
+	    	width: 90%;
+	    	max-width: 90%;
+		}
+	}
+	@media screen and (min-width: 640px) and (max-width: 1000px) {
+		.main-container{
+	    	width: 100%;
+	    	max-width: 100%;
+		}
+	}
+	@media screen and (max-width: 640px) {
+		.main-container{
+		    width: 100%;
+	    	max-width: 100%;
+			min-height: 200px;
+		}
+	} */
 	</style>
 </head>
 <body ng-controller="MainCtrl">
-	<div>
-		<div id="nav_container" ng-include="navContainer"></div>
-		<div id="body_container" ng-include="bodyContainer"></div>
-		<div id="container" ng-view></div>
-		<div id="footer_container" ng-include="footerContainer"></div>
-	</div>
+	<header ng-include="navContainer"></header>
+	<div class="main-container col-" ui-view></div>
+	<footer ng-include="footerContainer"></footer>
 	<script type="text/javascript" src="lib/require/require.js" data-main="js/main"></script>
 </body>
 </html>
