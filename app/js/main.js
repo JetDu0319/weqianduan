@@ -22,6 +22,6 @@ requirejs.config({
 
 // Start the main app logic.
 requirejs(['app'], function() {
-    angular.bootstrap(document.body, ['weApp']);
+    angular.bootstrap(document, ['weApp']);
 });
 
