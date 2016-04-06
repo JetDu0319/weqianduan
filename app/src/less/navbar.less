@@ -1,0 +1,165 @@
+@orange:#F60;
+/*渐变动画(浏览器兼容)*/
+.transi-animate(@animate-type:all,@animate-time:0.3s){
+  -webkit-transition: @animate-type @animate-time, opacity @animate-time, -webkit-transform @animate-time;
+  -moz-transition: @animate-type @animate-time, opacity @animate-time, -moz-transform @animate-time;
+  transition: @animate-type @animate-time, opacity @animate-time, transform @animate-time;
+}
+.navBar {
+  /*margin-top: 80px; */
+  width: 100%;
+  height: 68px;
+  background: #fff;
+  box-shadow: 1px 1px 4px 2px #e5e5e5;
+}
+
+.nav {
+  margin: 0 auto;
+  border: 0px solid #ccc;
+  ul {
+    list-style: none;
+    width: auto;
+  }
+  li {
+    height: 68px;
+    text-align: center;
+    a {
+      display: block;
+      font-size: 16px;
+      color: #000;
+      text-decoration: none;
+      line-height: 69px;
+    }
+  }
+}
+.current a{
+  color: #fff !important;
+}
+.link-effect{
+  a {
+    padding: 0 0 10px;
+  }
+  li{
+    position: relative;
+  }
+  a::after {
+    position: absolute;
+    top: 93%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background:@orange;
+    content: '';
+    opacity: 0;
+    -webkit-transform: translateY(-10px);
+    -moz-transform: translateY(-10px);
+    transform: translateY(-10px);
+    .transi-animate(height);
+  }
+  a:hover::after,
+  a:focus::after {
+    height: 5px;
+    opacity: 1;
+    -webkit-transform: translateY(0px);
+    -moz-transform: translateY(0px);
+    transform: translateY(0px);
+  }
+}
+/*ie-6兼容*/
+
+.ie6-8 .nav {
+  width: 1000px;
+  height: 68px;
+  ul li {
+    float: left;
+    a {
+      padding: 0 30px 0 30px;
+    }
+    .current {
+      background: @orange;
+      color: #fff;
+    }
+    :hover a {
+      color: @orange;
+    }
+    a:hover {
+      _color: @orange;
+    }/*IE6 Hack*/
+    .current:hover a {
+      color: #fff;
+    }
+  }
+  /*热门*/
+  .hot {
+    float: left;
+    margin-left: 20px;
+    padding-top: 8px;
+  }
+  a {
+    padding: 0 5px 0 5px;
+    font-size: 12px;
+    color: #fff;
+    text-decoration: none;
+    :hover {
+      color: @orange;
+      text-decoration: underline;
+    }
+  }
+  .title {
+    display: none;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .nav {width: 1000px; height: 68px;}
+
+  .nav ul li {float: left; width: auto;}
+  .nav ul li a {
+    padding: 0 30px 0 30px;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+  }
+  .nav ul li a{
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+  }
+  .nav ul li.current {background: #f60;}
+  .nav ul li:hover a {color: #f60;}
+  .nav ul li.current:hover a {color: #fff;}
+
+  .nav .hot {margin-left: 20px; padding-top: 8px;}
+  .nav .hot a {padding: 0 5px 0 5px; font-size: 12px; color: #fff; text-decoration: none;}
+  .nav .hot a:hover {color: #f60; text-decoration: underline;}
+
+  .nav .title {display: none;}
+}
+
+@media screen and (min-width: 640px) and (max-width: 1000px) {
+  .nav {width: auto; height: 38px;}
+
+  .nav ul li {float: left; width: 14%; min-width: 50px;}
+
+  .nav ul li.current {background: #f60;}
+  .nav ul li:hover a {color: #f60;}
+  .nav ul li.current:hover a {color: #fff;}
+
+  .nav .hot {display:none;}
+  .nav .title {display: none;}
+}
+
+@media screen and (max-width: 640px) {
+  .navBar {margin-top: 0; height: auto; background: #444;}
+  .nav {width: auto; height: auto;}
+
+  .nav ul li {margin-top: 1px; width: 100%; min-width: 100px;background: #333;}
+
+  .nav ul li a:active,
+  .nav ul li a:hover {background: #f60;}
+
+  .nav .hot {display:none;}
+
+  .nav .title {position: relative; width: 100%; height: 38px; border-top: 1px solid #444; background: #f60; text-align: center; font:normal 20px/35px "微软雅黑", arial, serif; letter-spacing: 2px;}
+  .nav .title a {color: #fff; text-decoration: none;}
+  .nav .title .btn {position: absolute; right: 10px; top: 0; width: 34px; height: 34px; padding: 2px; background: url(../../image/btn.png) center center no-repeat; cursor: pointer;}
+}

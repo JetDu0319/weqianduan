@@ -1,0 +1,15 @@
+var gulp = require('gulp'),
+    less = require('gulp-less'),
+    notify = require('gulp-notify'),
+    plumber = require('gulp-plumber');
+/*处理less文件*/ 
+gulp.task('appLess', function () {
+    gulp.src(['less/*.less'])
+    	.pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
+        .pipe(less())
+        .pipe(gulp.dest('css'));
+});
+/*监听less*/
+gulp.task('watchLess',function(){
+	gulp.watch('less/*.less',['appLess']);
+});

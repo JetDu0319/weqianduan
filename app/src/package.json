@@ -1,0 +1,29 @@
+{
+  "name": "weqianduan",
+  "version": "1.0.0",
+  "description": "微前端建设",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-less": "^3.0.5"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wangmingdong/weqianduan.git"
+  },
+  "keywords": [
+    "微前端"
+  ],
+  "author": "WangMingdong",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wangmingdong/weqianduan/issues"
+  },
+  "homepage": "https://github.com/wangmingdong/weqianduan#readme"
+}
