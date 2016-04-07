@@ -1,6 +1,7 @@
 var gulp = require('gulp'),
     less = require('gulp-less'),
     notify = require('gulp-notify'),
+    uglify = require('gulp-uglify'),
     plumber = require('gulp-plumber');
 /*处理less文件*/ 
 gulp.task('appLess', function () {
